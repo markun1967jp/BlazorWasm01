@@ -1,22 +1,33 @@
 ﻿@page "/tenkey"
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <PageTitle>10KEY</PageTitle>
 
-<h3>テンキー入力サンプル</h3>
-
+<h3>数量入力</h3>
 <div class="tenkey-container">
-    <input type="text" @bind="InputValue" readonly />
+    <!-- Input display at the top -->
+    <div class="input-display">
+        <input type="text" @bind="InputValue" readonly />
+    </div>
 
+    <!-- 1-9 Number buttons -->
     @for (int number = 1; number <= 9; number++)
     {
-        <button class="btn btn-primary" @onclick="() => AppendNumber(number)">
-            @number.ToString()
+        int currentNumber = number; // Capture the loop variable
+        <button class="btn btn-primary" @onclick="() => AppendNumber(currentNumber)">
+            @currentNumber.ToString()
         </button>
     }
 
-    <button class="btn btn-secondary" @onclick="Clear">Clear</button>
+    <!-- CLR button -->
+    <button class="btn btn-secondary" @onclick="Clear">CLR</button>
+
+    <!-- Zero button -->
     <button class="btn btn-primary" @onclick="() => AppendNumber(0)">0</button>
+
+    <!-- ENT button -->
+    <button class="btn btn-info" @onclick="NavigateToAnotherPage">ENT</button>
 </div>
 
 @code {
@@ -25,6 +36,11 @@
     private void AppendNumber(int number)
     {
         InputValue += number.ToString();
+    }
+
+    private void NavigateToAnotherPage()
+    {
+        NavigationManager.NavigateTo("/");
     }
 
     private void Clear()

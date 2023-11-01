@@ -1,20 +1,32 @@
 .tenkey-container {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr); /* Define 3 columns of equal width */
+    grid-template-rows: auto repeat(4, 1fr); /* Define rows for the input and buttons */
     gap: 10px;
     max-width: 200px;
     margin-bottom: 20px;
 }
 
-.btn {
-    width: 50px;
-    height: 50px;
-    font-size: 18px;
+.input-display {
+    grid-column: 1 / -1; /* The input display spans all columns */
 }
 
 input[type="text"] {
-    margin-bottom: 10px;
     padding: 10px;
     font-size: 18px;
     text-align: right;
+    width: 100%;
+    margin-bottom: 10px; /* To give some space from the buttons below */
+}
+
+.btn {
+    width: 100%; /* Makes the buttons expand to fill the cell */
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px; /* Center the text vertically */
+}
+
+/* Additional styles for specific buttons if needed */
+.btn-info, .btn-secondary {
+    /* You can add specific styles for the ENT and CLR buttons here if needed */
 }
