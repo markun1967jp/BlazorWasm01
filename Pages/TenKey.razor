@@ -1,6 +1,7 @@
 ﻿@page "/tenkey"
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
 <PageTitle>10KEY</PageTitle>
 
@@ -30,6 +31,8 @@
     <button class="btn btn-info" @onclick="NavigateToAnotherPage">ENT</button>
 </div>
 
+
+
 @code {
     private string InputValue { get; set; } = "";
 
@@ -40,6 +43,9 @@
 
     private void NavigateToAnotherPage()
     {
+        JSRuntime.InvokeVoidAsync("playSound2");
+        Task.Delay(1000);
+
         NavigationManager.NavigateTo("/");
     }
 

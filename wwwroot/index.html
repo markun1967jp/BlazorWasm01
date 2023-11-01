@@ -28,13 +28,23 @@
     <script src="qrCodeReader.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
-</body>
 
-<script>
-    window.playSound = () => {
-        let audio = new Audio('sound.mp3');
-        audio.play();
-    }
-</script>
+    <script>
+        // 音を再生するための汎用関数
+        function playSpecificSound(soundFile) {
+            var audio = new Audio(soundFile);
+            audio.play();
+        }
+
+        // 特定の音声ファイルを再生するための関数
+        window.playSound1 = () => {
+            playSpecificSound('sound.mp3');
+        };
+
+        window.playSound2 = () => {
+            playSpecificSound('enter.mp3');
+        };
+    </script>
+</body>
 
 </html>

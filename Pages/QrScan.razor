@@ -1,7 +1,8 @@
 ﻿@page "/"
-@inject IJSRuntime JS
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
 
-<h1>QR スキャン/v.1.0.5</h1>
+<h1>QR スキャン/v.1.0.6</h1>
 
 <center>
     <p>@qrCodeValue</p>
@@ -17,26 +18,25 @@
     public void QRCodeDetected(string code) 
     {
         qrCodeValue = code;
-        JS.InvokeVoidAsync("playSound");
+        JSRuntime.InvokeVoidAsync("playSound1");
+        Task.Delay(700);
         StateHasChanged();
+
+        NavigationManager.NavigateTo("/tenkey");
     }
 
     private async Task StartQRCodeReading() 
     {
         qrCodeValue = "スキャンしてください。";
-        await JS.InvokeVoidAsync("startQRCodeReading", DotNetObjectReference.Create(this));
+        await JSRuntime.InvokeVoidAsync("startQRCodeReading", DotNetObjectReference.Create(this));
     }
 
     private async Task StopQRCodeReading() 
     {
 
-        await JS.InvokeVoidAsync("stopQRCodeReading");
+        await JSRuntime.InvokeVoidAsync("stopQRCodeReading");
     }
 
-    // private async Task PlaySound()
-    // {
-    //     await JS.InvokeVoidAsync("playSound");
-    // }
 }
 
 
