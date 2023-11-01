@@ -1,3 +1,12 @@
+.centered-content {
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    /* align-items: center; 垂直方向の中央揃え */
+    /* height: 100vh; ビューポートの高さに基づく */
+}
+h3 {
+    text-align: center;
+}
 .tenkey-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Define 3 columns of equal width */
