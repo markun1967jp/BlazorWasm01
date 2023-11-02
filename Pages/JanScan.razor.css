@@ -1,12 +1,13 @@
 ﻿#interactive {
-    display: flex;
+    /* display: flex; */
+
     justify-content: left; /* 水平方向の中央に配置 */
     align-items: center; /* 垂直方向の中央に配置 */
     border: 1px solid gray;
     margin-left: auto; /* 左の余白を自動調整 */
     margin-right: auto; /* 右の余白を自動調整 */
     height: 240px; /* 高さを適切に設定 */
-    width:100%;
+    width: 100%;
     box-sizing: border-box; /* ボーダーを含めたサイズ計算を行う */
 }
 
