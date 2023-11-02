@@ -3,14 +3,12 @@
         inputStream: {
             type: "LiveStream",
             constraints: {
-                width: { min: 200 },
-                height: { min: 150 },
+                // カメラの制約を設定します
+                width: { ideal: 320 }, // 好ましい幅
+                height: { ideal: 240 }, // 好ましい高さ
                 facingMode: "environment"
             },
-            height: {
-                min: 100, // 最小高さ
-                max: 300  // 最大高さ
-            },
+            // area の設定は必要に応じて調整してください
             area: {
                 top: "0%",
                 right: "0%",
@@ -19,7 +17,7 @@
             }
         },
         decoder: {
-            readers: ["code_128_reader", "ean_reader"] // この部分は読み取りたいバーコードの種類に合わせて変更可能
+            readers: ["code_128_reader", "ean_reader"] // 読み取りたいバーコードの種類に合わせて変更
         },
     }, function (err) {
         if (err) {
@@ -27,6 +25,13 @@
             return;
         }
         Quagga.start();
+
+        // ビデオ要素のスタイルを動的に設定します
+        var videoElement = document.querySelector('#interactive video');
+        if (videoElement) {
+            videoElement.style.width = '320px';
+            videoElement.style.height = '240px';
+        }
     });
 
     Quagga.onDetected(function (data) {

@@ -1,0 +1,32 @@
+﻿@page "/janscan"
+@inject IJSRuntime JSRuntime
+
+<h1>JAN スキャン</h1>
+
+<center>
+    <p>@barcodeValue</p>
+    <button @onclick="StartBarcodeDetection">スキャン開始</button>
+    <div id="interactive" class="viewport" width="320" height="240" style="border: 1px solid gray;"></div>
+    
+</center>
+
+@code {
+    private string barcodeValue = "スキャンしてください。";
+
+    [JSInvokable]
+    public void BarcodeDetected(string code)
+    {
+        barcodeValue = code;
+        JSRuntime.InvokeVoidAsync("playSound1");
+        Task.Delay(700);
+        StateHasChanged();
+    }
+
+    private async Task StartBarcodeDetection()
+    {
+        barcodeValue = "スキャンしてください。";
+        await JSRuntime.InvokeVoidAsync("readBarcode", DotNetObjectReference.Create(this));
+    }
+}
+
+
