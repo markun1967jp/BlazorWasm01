@@ -2,7 +2,7 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 
-<h1>バーコード照合 / v.1.0.0</h1>
+<h1>バーコード照合 / v.1.0.1</h1>
 
 <center>
     <p>@qrCodeValue1</p>
@@ -53,7 +53,10 @@
         }
         else
         {
-            qrCodeValue2 = "スキャンしてください。";
+            if (qrCodeValue1 != "スキャンしてください。")
+            {
+                qrCodeValue2 = "スキャンしてください。";
+            } 
         }
 
         await JSRuntime.InvokeVoidAsync("startQRCodeReading", DotNetObjectReference.Create(this));
