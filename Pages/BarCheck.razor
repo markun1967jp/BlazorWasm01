@@ -1,0 +1,73 @@
+﻿@page "/barcheck"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<h1>バーコード照合 / v.1.0.0</h1>
+
+<center>
+    <p>@qrCodeValue1</p>
+    <p>@qrCodeValue2</p>
+    <video id="video" width="300" height="200" style="border: 1px solid black"></video><br />
+    <button @onclick="StopQRCodeReading">読み取り停止</button><br />
+    <button class="scan-button" @onclick="StartQRCodeReading">バースキャン</button>
+</center>
+
+@code {
+    private string qrCodeValue1 = "バーコード1:";
+    private string qrCodeValue2 = "バーコード2:";
+
+    [JSInvokable]
+    public void QRCodeDetected(string code)
+    {
+        if (qrCodeValue1 == "スキャンしてください。")
+        {
+            qrCodeValue1 = code;
+            JSRuntime.InvokeVoidAsync("playSound1");
+            Task.Delay(700);
+        }
+        if (qrCodeValue2 == "スキャンしてください。")
+        {
+            qrCodeValue2 = code;
+            if (qrCodeValue1 == qrCodeValue2)
+            {   // 照合OK
+                JSRuntime.InvokeVoidAsync("playOK");
+                Task.Delay(1000);
+                // 表示リセット
+                Fn_CLR();
+            }
+            else
+            {
+                JSRuntime.InvokeVoidAsync("playNG");
+                Task.Delay(1000);
+            }
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task StartQRCodeReading()
+    {
+        if (qrCodeValue1 == "バーコード1:")
+        {
+            qrCodeValue1 = "スキャンしてください。";
+        }
+        else
+        {
+            qrCodeValue2 = "スキャンしてください。";
+        }
+
+        await JSRuntime.InvokeVoidAsync("startQRCodeReading", DotNetObjectReference.Create(this));
+    }
+
+    private async Task StopQRCodeReading()
+    {
+        // 表示リセット
+        Fn_CLR();
+        await JSRuntime.InvokeVoidAsync("stopQRCodeReading");
+    }
+    private void Fn_CLR()
+    {
+        qrCodeValue1 = "バーコード1:";
+        qrCodeValue2 = "バーコード2:";
+    }
+}

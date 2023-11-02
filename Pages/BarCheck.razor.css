@@ -1,0 +1,8 @@
+﻿.scan-button {
+    width: 150px; /* ここで好きな幅を指定 */
+    height: 50px; /* ここで好きな高さを指定 */
+    padding: 10px 20px; /* 必要に応じてパディングも調整可能 */
+    font-size: 16px; /* テキストのサイズを調整 */
+    margin-top: 10px; /* 10ピクセルの下マージン */
+    background-color: yellow;
+}
