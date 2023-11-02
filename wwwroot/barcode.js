@@ -4,8 +4,8 @@
             type: "LiveStream",
             constraints: {
                 // カメラの制約を設定します
-                width: { ideal: 320 }, // 好ましい幅
-                height: { ideal: 240 }, // 好ましい高さ
+                width: { ideal: 640 }, // 好ましい幅
+                height: { ideal: 480 }, // 好ましい高さ
                 facingMode: "environment"
             },
             // area の設定は必要に応じて調整してください

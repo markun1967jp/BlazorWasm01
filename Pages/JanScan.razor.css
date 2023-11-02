@@ -1,0 +1,6 @@
+﻿#interactive {
+    display: flex;
+    justify-content: center; /* 水平方向の中央に配置 */
+    align-items: center; /* 垂直方向の中央に配置 */
+    height: 100vh; /* 親要素の高さをビューポートの高さに設定 */
+}
