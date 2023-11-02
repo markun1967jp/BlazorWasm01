@@ -31,6 +31,7 @@
         if (videoElement) {
             videoElement.style.width = '320px';
             videoElement.style.height = '240px';
+            videoElement.style.objectFit = 'contain'; // ビデオのアスペクト比を維持しつつ、親要素にフィットさせる
         }
     });
 

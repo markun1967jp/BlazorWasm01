@@ -5,10 +5,11 @@
 
 <center>
     <p>@barcodeValue</p>
-    <button @onclick="StartBarcodeDetection">スキャン開始</button>
-    <div id="interactive" class="viewport" width="320" height="240" style="border: 1px solid gray;"></div>
-    
+    <button class="scan-button" @onclick="StartBarcodeDetection">スキャン開始</button>
+    <div id="interactive" class="viewport" style="border: 1px solid gray;"></div>
+ 
 </center>
+
 
 @code {
     private string barcodeValue = "スキャンしてください。";

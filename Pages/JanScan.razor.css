@@ -1,6 +1,25 @@
 ﻿#interactive {
     display: flex;
-    justify-content: center; /* 水平方向の中央に配置 */
+    justify-content: left; /* 水平方向の中央に配置 */
     align-items: center; /* 垂直方向の中央に配置 */
-    height: 100vh; /* 親要素の高さをビューポートの高さに設定 */
+    border: 1px solid gray;
+    margin-left: auto; /* 左の余白を自動調整 */
+    margin-right: auto; /* 右の余白を自動調整 */
+    height: 240px; /* 高さを適切に設定 */
+    width:100%;
+    box-sizing: border-box; /* ボーダーを含めたサイズ計算を行う */
+}
+
+#interactive video {
+    max-width: 100%; /* 親要素の幅に合わせる */
+    max-height: 100%; /* 親要素の高さに合わせる */
+}
+
+.scan-button {
+    width: 150px; /* ここで好きな幅を指定 */
+    height: 50px; /* ここで好きな高さを指定 */
+    padding: 10px 20px; /* 必要に応じてパディングも調整可能 */
+    font-size: 16px; /* テキストのサイズを調整 */
+    margin-top: 10px; /* 10ピクセルの下マージン */
+    background-color: yellow;
 }
