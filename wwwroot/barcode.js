@@ -17,7 +17,7 @@
             }
         },
         decoder: {
-            readers: ["code_128_reader", "ean_reader"] // 読み取りたいバーコードの種類に合わせて変更
+            readers: ["ean_reader"] // 読み取りたいバーコードの種類に合わせて変更("code_128_reader", )
         },
     }, function (err) {
         if (err) {
