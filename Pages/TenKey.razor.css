@@ -39,3 +39,10 @@ input[type="text"] {
 .btn-info, .btn-secondary {
     /* You can add specific styles for the ENT and CLR buttons here if needed */
 }
+.scanBarcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px; /* ‚Ü‚½‚Í•K—v‚È‚‚³ */
+    margin-bottom:5px;
+}

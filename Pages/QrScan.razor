@@ -2,7 +2,7 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 
-<h1>QR スキャン/v.1.0.6</h1>
+<h1>QR スキャン/v.1.0.7</h1>
 
 <center>
     <p>@qrCodeValue</p>
@@ -22,7 +22,7 @@
         Task.Delay(700);
         StateHasChanged();
 
-        NavigationManager.NavigateTo("/tenkey");
+        NavigationManager.NavigateTo("/tenkey/" + qrCodeValue);
     }
 
     private async Task StartQRCodeReading() 
