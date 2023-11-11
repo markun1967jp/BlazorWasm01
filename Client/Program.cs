@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 namespace BlazorWasm01
 {
+    // プログラムの更新後は、「Service Worker Version」を更新すること！
     public class Program
     {
         public static async Task Main(string[] args)
