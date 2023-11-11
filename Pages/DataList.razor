@@ -1,0 +1,45 @@
+﻿@page "/datalist"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject CommonDataService CommonData    // 共通変数
+
+<h3>データ一覧</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>BarCode</th>
+            <th>Qty</th>
+            <th>DateTime</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in scanDatas)
+        {
+            <tr>
+                <td>@row.バーコード</td>
+                <td>@row.数量</td>
+                <td>@row.処理日時</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-info" @onclick="NavigateToAnotherPage">終了</button>
+
+@code {
+    private List<ScanData> scanDatas = new List<ScanData>();
+
+    protected override void OnInitialized()
+    {
+        // 共通変数の取得
+        scanDatas = CommonData.scanDatas;
+    }
+
+    private void NavigateToAnotherPage()
+    {
+        JSRuntime.InvokeVoidAsync("playSound2");
+        Task.Delay(1000);
+        CommonData.iCount = 0;  // カウントリセット
+        NavigationManager.NavigateTo("/");
+    }
+}

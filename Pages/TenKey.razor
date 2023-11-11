@@ -3,6 +3,7 @@
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
+@inject CommonDataService CommonData    // 共通変数
 
 <PageTitle>10KEY</PageTitle>
 <h3>数量入力</h3>
@@ -45,7 +46,9 @@
 
     protected override void OnInitialized()
     {   //パラメーターセット
-        qrCodeValue = "BAR: " + Param;
+        //qrCodeValue = "BAR: " + Param;
+        // バーコードセット
+        qrCodeValue = "BAR: " + CommonData.scanData.バーコード;
     }
 
     private void AppendNumber(int number)
@@ -55,6 +58,21 @@
 
     private void NavigateToAnotherPage()
     {
+        // ENTERキーで、数値入力画面終了
+        if (InputValue == "")
+        {
+            InputValue = "0";
+        }
+        // 共通変数にデータセット
+        CommonData.scanData.数量 = int.Parse(InputValue);
+        ScanData data = new ScanData();
+        data.バーコード = CommonData.scanData.バーコード;
+        data.数量 = CommonData.scanData.数量;
+        data.処理日時 = CommonData.scanData.処理日時;
+
+        CommonData.scanDatas.Add(data);  // 1行追加
+        CommonData.iCount++;    // カウントアップ
+
         JSRuntime.InvokeVoidAsync("playSound2");
         Task.Delay(1000);
 

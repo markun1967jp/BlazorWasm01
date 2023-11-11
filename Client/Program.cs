@@ -13,6 +13,8 @@ namespace BlazorWasm01
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            // ’Ç‰ÁA‹¤’Ê•Ï”—p
+            builder.Services.AddSingleton<CommonDataService>();
 
             await builder.Build().RunAsync();
         }

@@ -1,28 +1,37 @@
 ﻿@page "/"
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
+@inject CommonDataService CommonData    // 共通変数
 
-<h1>QR スキャン/v.1.0.7</h1>
+<h1>QR スキャン/v.1.0.8</h1>
 
 <center>
     <p>@qrCodeValue</p>
     <video id="video" width="300" height="200" style="border: 1px solid black"></video><br/>
-    <button @onclick="StopQRCodeReading">読み取り停止</button><br/>
+    <button @onclick="StopQRCodeReading">読み取り終了</button><br/>
     <button class ="scan-button" @onclick="StartQRCodeReading">QRスキャン</button>
+    <p>@CommonData.iCount.ToString() 件</p>
 </center>
 
 @code {
+    // NuGet DnetIndexedDB
     private string qrCodeValue = "QRコード:";
 
     [JSInvokable]
     public void QRCodeDetected(string code) 
     {
         qrCodeValue = code;
+        // 共通変数にデータセット
+        CommonData.scanData.バーコード = code;
+        CommonData.scanData.数量 = 0;
+        CommonData.scanData.処理日時 = DateTime.Now;
+
         JSRuntime.InvokeVoidAsync("playSound1");
         Task.Delay(700);
         StateHasChanged();
 
-        NavigationManager.NavigateTo("/tenkey/" + qrCodeValue);
+        //NavigationManager.NavigateTo("/tenkey/" + qrCodeValue);
+        NavigationManager.NavigateTo("/tenkey");
     }
 
     private async Task StartQRCodeReading() 
@@ -31,10 +40,18 @@
         await JSRuntime.InvokeVoidAsync("startQRCodeReading", DotNetObjectReference.Create(this));
     }
 
+    /// --------------------------------------------------------------------------------
+    /// <summary>
+    /// 「読み取り終了」、クリック
+    /// </summary>
+    /// <returns></returns>
+    /// --------------------------------------------------------------------------------
     private async Task StopQRCodeReading() 
     {
-
         await JSRuntime.InvokeVoidAsync("stopQRCodeReading");
+
+        // 一覧表示
+        NavigationManager.NavigateTo("/datalist");
     }
 }
 
