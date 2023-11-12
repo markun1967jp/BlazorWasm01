@@ -1,0 +1,16 @@
+﻿.send-button {
+    width: 80px; /* ここで好きな幅を指定 */
+    height: 60px; /* ここで好きな高さを指定 */
+    padding: 10px 20px; /* 必要に応じてパディングも調整可能 */
+    font-size: 16px; /* テキストのサイズを調整 */
+    margin-top: 10px; /* 10ピクセルの下マージン */
+    background-color: yellow;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}

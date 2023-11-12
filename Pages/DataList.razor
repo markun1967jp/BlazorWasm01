@@ -25,7 +25,12 @@
         }
     </tbody>
 </table>
-<button class="btn btn-info" @onclick="NavigateToAnotherPage">終了</button>
+<center><p>@CommonData.iCount.ToString() 件</p></center>
+
+<div class="buttons-container">
+    <button class="btn btn-info" @onclick="NavigateToAnotherPage">終了</button>
+    <button class="send-button" @onclick="NavigateToSendPage">送信</button>
+</div>
 
 @code {
     private List<ScanData> scanDatas = new List<ScanData>();
@@ -42,6 +47,14 @@
         Task.Delay(1000);
         CommonData.iCount = 0;  // カウントリセット
         NavigationManager.NavigateTo("/");
+    }
+
+    private void NavigateToSendPage()
+    {
+        JSRuntime.InvokeVoidAsync("playSound2");
+        Task.Delay(1000);
+        CommonData.iCount = 0;  // カウントリセット
+        NavigationManager.NavigateTo("/sendmail");
     }
 
     /// --------------------------------------------------------------------------------
