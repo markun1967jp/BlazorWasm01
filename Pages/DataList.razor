@@ -41,6 +41,11 @@
         scanDatas = CommonData.scanDatas;
     }
 
+    /// --------------------------------------------------------------------------------
+    /// <summary>
+    /// 最初のページに戻る
+    /// </summary>
+    /// --------------------------------------------------------------------------------
     private void NavigateToAnotherPage()
     {
         JSRuntime.InvokeVoidAsync("playSound2");
@@ -49,12 +54,17 @@
         NavigationManager.NavigateTo("/");
     }
 
+    /// --------------------------------------------------------------------------------
+    /// <summary>
+    /// メール送信ページへ移動
+    /// </summary>
+    /// --------------------------------------------------------------------------------
     private void NavigateToSendPage()
     {
         JSRuntime.InvokeVoidAsync("playSound2");
         Task.Delay(1000);
         CommonData.iCount = 0;  // カウントリセット
-        NavigationManager.NavigateTo("/sendmail");
+        NavigationManager.NavigateTo("/mailsend");
     }
 
     /// --------------------------------------------------------------------------------
