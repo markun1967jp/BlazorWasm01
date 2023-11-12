@@ -1,5 +1,6 @@
 // In development, always fetch from the network and do not enable offline support.
 // This is because caching would make development more difficult (changes would not
 // be reflected on the first load after each change).
-// Service Worker Version 1.0.8
+// バージョンアップの時は、ここを書き換える。
+// Service Worker Version 1.0.9
 self.addEventListener('fetch', () => { });

@@ -2,6 +2,7 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 @inject CommonDataService CommonData    // 共通変数
+@using System.Text.RegularExpressions;
 
 <h3>データ一覧</h3>
 
@@ -41,5 +42,29 @@
         Task.Delay(1000);
         CommonData.iCount = 0;  // カウントリセット
         NavigationManager.NavigateTo("/");
+    }
+
+    /// --------------------------------------------------------------------------------
+    /// <summary>
+    /// メールアドレスの禁止文字チェック
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
+    /// --------------------------------------------------------------------------------
+    private string MakeSafeFileName(string email)
+    {
+        string safeName = email;
+
+        // 禁止文字を安全な文字に置き換えます
+        safeName = safeName.Replace("@", "_");
+        safeName = safeName.Replace(".", "_");
+
+        // 他の禁止されている文字も必要に応じてここで置き換えます
+        // 例: safeName = safeName.Replace("/", "_");
+
+        // ファイル名に使えない他の文字を除去または置き換え
+        safeName = Regex.Replace(safeName, "[^a-zA-Z0-9-_]", "");
+
+        return safeName;
     }
 }

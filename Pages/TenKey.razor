@@ -56,6 +56,11 @@
         InputValue += number.ToString();
     }
 
+    /// --------------------------------------------------------------------------------
+    /// <summary>
+    /// ENTERキー入力後、別のrazorページに移動
+    /// </summary>
+    /// --------------------------------------------------------------------------------
     private void NavigateToAnotherPage()
     {
         // ENTERキーで、数値入力画面終了
@@ -75,7 +80,7 @@
 
         JSRuntime.InvokeVoidAsync("playSound2");
         Task.Delay(1000);
-
+        // 別のrazorページに移動
         NavigationManager.NavigateTo("/");
     }
 
